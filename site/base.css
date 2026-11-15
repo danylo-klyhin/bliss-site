@@ -1,0 +1,39 @@
+/* Shared reset and behaviour for all three variants. Look and feel lives in each variant's style.css. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; min-height: 100svh; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+[hidden] { display: none !important; }
+summary { list-style: none; cursor: pointer; }
+summary::-webkit-details-marker { display: none; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Menu rows: one structure, restyled per variant. */
+.item-row { display: flex; align-items: baseline; gap: 12px; }
+.item-name { flex: 0 1 auto; min-width: 0; }
+.item-lead { flex: 1 1 12px; min-width: 12px; }
+.item-price { flex: none; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.groups { display: flex; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.scale { display: inline-flex; gap: 4px; vertical-align: middle; }
+.scale i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid currentColor; }
+.scale i.on { background: currentColor; }
+.wine-detail { display: flex; gap: 16px; }
+.wine-detail img { flex: none; width: 88px; height: 118px; object-fit: cover; }
+.wine-facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; align-content: start; }
+
+/* Photo slots: the image disappears if the file is missing and the tinted block stays. */
+.ph { position: relative; overflow: hidden; }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.ph figcaption { position: absolute; left: 12px; bottom: 10px; font-size: 12px; opacity: .55; }
+.ph img + figcaption { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

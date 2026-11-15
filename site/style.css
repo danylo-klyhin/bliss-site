@@ -1,0 +1,99 @@
+/* Variant A, "Noche". Black and the wordmark. Closest to the bar's Instagram.
+   One vocabulary for both pages: a giant Oswald title, 22px uppercase section titles, 17px hairline rows. */
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --mute: #9a9a93;
+  --line: #242424;
+  --pad: 20px;
+  --col: 680px;
+  --display: "Oswald", "Arial Narrow", sans-serif;
+  --text: "Instrument Sans", system-ui, sans-serif;
+}
+
+body { background: var(--bg); color: var(--fg); font: 400 16px/1.45 var(--text); }
+
+/* Top bar */
+.top { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 var(--pad); }
+.brand { padding: 10px 0; font: 700 24px/1 var(--display); text-decoration: none; }
+.top-links { display: flex; align-items: center; gap: 8px; margin-left: auto; font-size: 15px; }
+.top-links a { padding: 12px 8px; text-decoration: none; }
+[data-lang] { min-width: 44px; height: 44px; font-size: 15px; font-weight: 500; color: var(--mute); }
+
+/* Rows: shared by the carta and by the hours and address on the home page */
+.sub { margin-top: 40px; scroll-margin-top: 112px; }
+.sub-title { padding-bottom: 12px; font: 500 22px/1.1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+.sub-kicker { margin: 56px 0 22px; font-size: 15px; color: var(--mute); }
+.sub:has(.sub-kicker) { margin-top: 0; }
+.items { border-top: 1px solid var(--line); }
+.item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.item-name { font-size: 17px; font-weight: 500; }
+.item-price { font-size: 17px; }
+.item-desc { display: block; max-width: 34ch; margin-top: 3px; font-size: 14.5px; line-height: 1.4; color: var(--mute); }
+.item-link { display: block; margin: -14px 0; padding: 14px 0; text-decoration: none; }
+.item-link .item-price { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+/* Home */
+.home .top { position: absolute; inset: 0 0 auto; z-index: 2; }
+.hero { padding-top: clamp(112px, 25svh, 230px); }
+/* With a photo: it fills the top of the screen and fades to black, so the wordmark sits on black. */
+.hero:has(.hero-photo) { padding-top: 0; }
+.hero-photo { position: relative; height: clamp(300px, 54svh, 620px); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, .78), rgba(0, 0, 0, .45) 14%, rgba(0, 0, 0, 0) 34%, rgba(0, 0, 0, 0) 42%, #000 90%); }
+body:has(.hero-photo) [data-lang] { color: var(--fg); }
+.hero:has(.hero-photo) .hero-body { margin-top: -40px; }
+.hero-body { position: relative; width: 100%; max-width: var(--col); margin: 0 auto; padding: 0 var(--pad); }
+
+.wordmark { margin: 0 0 0 -.035em; font: 700 clamp(96px, 34.5vw, 232px)/.84 var(--display); letter-spacing: -.02em; }
+.tagline { margin-top: 14px; font-size: 18px; }
+
+.cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+.btn { display: flex; align-items: center; justify-content: center; height: 52px; padding: 0 6px; border: 1px solid var(--fg); font-weight: 500; white-space: nowrap; text-decoration: none; }
+.btn-primary { background: var(--fg); color: var(--bg); }
+
+/* The photo strip exists only when there are photos to show. */
+.photos { display: flex; gap: 8px; margin-top: 40px; padding: 0 var(--pad); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.photos::-webkit-scrollbar { display: none; }
+.photos:not(:has(figure)) { display: none; }
+.photos figure { flex: none; width: 68vw; max-width: 320px; aspect-ratio: 4 / 5; scroll-snap-align: start; }
+.photos img { width: 100%; height: 100%; object-fit: cover; }
+
+.info { max-width: var(--col); margin: 0 auto; padding: 8px var(--pad) 64px; }
+
+/* Map chooser, shown on iPhone only */
+.sheet { position: fixed; inset: auto 0 0; width: 100%; max-width: none; margin: 0; padding: 26px var(--pad) calc(28px + env(safe-area-inset-bottom)); border: 0; border-top: 1px solid var(--line); background: #101010; color: var(--fg); animation: sheet-in .18s ease-out; }
+.sheet:focus { outline: none; }
+.sheet::backdrop { background: rgba(0, 0, 0, .62); }
+.sheet-close { width: 100%; height: 52px; margin-top: 8px; color: var(--mute); }
+@keyframes sheet-in { from { transform: translateY(18px); opacity: 0; } }
+
+/* Carta: two rows that stay on screen. Sections on top, what is inside the current one below. */
+.groups { position: sticky; top: 0; z-index: 9; gap: 24px; height: 48px; padding: 0 var(--pad); overflow-x: auto; background: var(--bg); scrollbar-width: none; }
+.groups::-webkit-scrollbar, .subnav::-webkit-scrollbar { display: none; }
+.groups a { flex: none; padding: 14px 0 12px; font: 500 16px/1 var(--display); text-transform: uppercase; letter-spacing: .03em; text-decoration: none; color: var(--mute); border-bottom: 2px solid transparent; }
+.groups a[aria-current] { color: var(--fg); border-color: var(--fg); }
+.subnav { position: sticky; top: 48px; z-index: 9; display: flex; align-items: center; gap: 22px; height: 44px; padding: 0 var(--pad); overflow-x: auto; background: var(--bg); border-bottom: 1px solid var(--line); scrollbar-width: none; }
+.subnav a { flex: none; padding: 12px 0; font-size: 15px; white-space: nowrap; text-decoration: none; color: var(--mute); }
+.subnav a[aria-current] { color: var(--fg); }
+
+#carta { max-width: var(--col); margin: 0 auto; padding: 0 var(--pad) 72px; }
+.group { padding-top: 48px; scroll-margin-top: 104px; }
+.group-title { margin-left: -.03em; font: 700 clamp(56px, 20vw, 128px)/.88 var(--display); text-transform: uppercase; letter-spacing: -.015em; }
+
+.foot { display: flex; justify-content: space-between; gap: 16px; padding: 22px var(--pad) 34px; border-top: 1px solid var(--line); font-size: 14.5px; color: var(--mute); }
+.foot a { margin: -11px 0; padding: 11px 0; }
+
+@media (max-width: 340px) {
+  .btn { font-size: 15px; }
+  .item-name, .item-price { font-size: 16px; }
+  .tagline { font-size: 17px; }
+}
+
+@media (min-width: 900px) {
+  :root { --pad: 40px; }
+  .cta { max-width: 420px; }
+  .hero-photo { max-width: var(--col); margin: 0 auto; }
+  .photos { max-width: var(--col); margin-left: auto; margin-right: auto; }
+  .top, .groups, .subnav, .foot { padding-left: max(var(--pad), calc(50vw - var(--col) / 2 + var(--pad))); padding-right: max(var(--pad), calc(50vw - var(--col) / 2 + var(--pad))); }
+}

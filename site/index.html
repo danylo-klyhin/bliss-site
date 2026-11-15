@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>Bliss. Vinos naturales y cócteles en Ruzafa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+
+<header class="top">
+  <nav class="top-links">
+    <a href="carta.html" data-i18n="menu">Carta</a>
+    <button type="button" data-lang>EN</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <!-- If photos/hero.jpg is missing, this block removes itself and the page is type only. -->
+    <figure class="hero-photo">
+      <img src="photos/hero.jpg" alt="" width="1080" height="1440" onerror="this.parentNode.remove()">
+    </figure>
+    <div class="hero-body">
+      <h1 class="wordmark">BLISS.</h1>
+      <p class="tagline" data-i18n="tagline">Vinos naturales y cócteles</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="carta.html" data-i18n="see_menu">Ver la carta</a>
+        <!-- Does nothing until RESERVE_LINK is set at the top of app.js. -->
+        <a class="btn" data-reserve data-i18n="reserve">Reservar mesa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Optional photo strip. Add one <figure> line per photo here; see AGENTS.md. -->
+  <section class="photos" aria-label="Bliss">
+  </section>
+
+  <div class="info">
+    <section class="sub">
+      <h2 class="sub-title" data-i18n="hours">Horario</h2>
+      <ul class="items">
+        <li class="item"><span class="item-row"><span class="item-name" data-i18n="h_days_1">Martes a jueves</span><span class="item-lead"></span><span class="item-price" data-i18n="h_time_1">18:00 a 24:00</span></span></li>
+        <li class="item"><span class="item-row"><span class="item-name" data-i18n="h_days_2">Viernes y sábado</span><span class="item-lead"></span><span class="item-price" data-i18n="h_time_2">18:00 a 2:00</span></span></li>
+        <li class="item"><span class="item-row"><span class="item-name" data-i18n="h_days_3">Domingo y lunes</span><span class="item-lead"></span><span class="item-price" data-i18n="h_time_3">Cerrado</span></span></li>
+      </ul>
+    </section>
+
+    <section class="sub" id="visita">
+      <h2 class="sub-title" data-i18n="visit">Dónde estamos</h2>
+      <ul class="items">
+        <li class="item">
+          <a class="item-link" data-directions href="#">
+            <span class="item-row"><span class="item-name" data-i18n="addr">C/ Reina Na Maria, 1</span><span class="item-lead"></span><span class="item-price" data-i18n="go">Cómo llegar</span></span>
+            <span class="item-desc" data-i18n="address_2">Ruzafa, 46006 València</span>
+          </a>
+        </li>
+        <li class="item">
+          <a class="item-link" data-href="instagram" href="#">
+            <span class="item-row"><span class="item-name">Instagram</span><span class="item-lead"></span><span class="item-price">@bliss.ruzafa</span></span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<!-- iPhone only: a site cannot see which map apps are installed, so the guest picks. -->
+<dialog class="sheet" id="maps-sheet" aria-labelledby="maps-sheet-title" tabindex="-1">
+  <h2 class="sub-title" id="maps-sheet-title" data-i18n="open_in">Abrir en</h2>
+  <ul class="items">
+    <li class="item"><a class="item-link" data-map="apple" href="#"><span class="item-name">Apple Maps</span></a></li>
+    <li class="item"><a class="item-link" data-map="google" href="#"><span class="item-name">Google Maps</span></a></li>
+  </ul>
+  <form method="dialog"><button class="sheet-close" data-i18n="cancel">Cancelar</button></form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
