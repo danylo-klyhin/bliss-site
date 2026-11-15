@@ -7,7 +7,8 @@ Static site, no framework and no build step. Edit the files in `site/` directly 
 1. **Visible text is not in the HTML.** On load, `site/app.js` replaces the text of every element that has a `data-i18n` attribute with a string from the table `T` at the top of that file. Changing words in the HTML does nothing. Change them in `T`, in both `es` and `en`.
 2. **`site/menu-data.js` is generated.** Do not edit it by hand: `tools/update-menu.py` overwrites it. Name fixes and English translations live in that script (`NAMES`, `DESCS`).
 3. **The menu refresh depends on the old site.** `tools/update-menu.py --fetch` reads `https://bliss-menu.vercel.app/api`, which relays the bar's Loyverse till. If the old site is switched off, the refresh stops working and the menu stays at the last snapshot until someone connects Loyverse directly.
-4. **Design decisions that were made on purpose. Do not undo them unless the owner asks:**
+4. **Two hooks in `site/carta.html` switch on the menu as designed. Keep both.** `data-wine="grouped"` on `<body>` groups the wines by colour, and `<nav class="subnav" id="subnav">` is the second navigation row. Without the first, the menu falls back to an old filter mode that has no styles any more; without the second, the sub-navigation disappears.
+5. **Design decisions that were made on purpose. Do not undo them unless the owner asks:**
    - A wine row is the name and the price. No bottle photos, no "funk" or acidity scales, no body or pairing notes.
    - Wines are grouped by colour under headings. No filter buttons.
    - No open/closed status line on the home page.
